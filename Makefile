@@ -10,7 +10,7 @@ EXECUTABLE=$(BUILD_DIR)/lbm-sim
 #CUDA_LINKER=$(BUILD_DIR)/cuda-linker.o
 
 #cuda settings
-COMPUTE_CAPABILITY=20
+COMPUTE_CAPABILITY=75
 # --------------------------------------------------------------------------------------------------
 #Compiler command
 CC=g++
