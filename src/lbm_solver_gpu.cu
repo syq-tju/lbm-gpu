@@ -370,17 +370,17 @@ void DoIteration(float *collide_field, float *stream_field, int *flag_field, flo
 
 	/* perform streaming */
 	DoStreaming<<<grid,block>>>();
-	cudaErrorCheck(cudaThreadSynchronize());
+	cudaErrorCheck(cudaDeviceSynchronize());
 	cudaErrorCheck(cudaPeekAtLastError());
 
 	/* Perform the swapping of collide and stream fields */
 	DoSwap<<<1,1>>>();
-	cudaErrorCheck(cudaThreadSynchronize());
+	cudaErrorCheck(cudaDeviceSynchronize());
 	cudaErrorCheck(cudaPeekAtLastError());
 
 	/* perform collision */
 	DoCollision<<<grid,block>>>();
-	cudaErrorCheck(cudaThreadSynchronize());
+	cudaErrorCheck(cudaDeviceSynchronize());
 	cudaErrorCheck(cudaPeekAtLastError());
 
 	/* perform boundary treatment */
