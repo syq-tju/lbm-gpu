@@ -354,13 +354,13 @@ void DoIteration(float *collide_field, float *stream_field, int *flag_field, flo
 	clock_t mlups_time;
 
 	/* initialize constant data */
-	cudaErrorCheck(cudaMemcpyToSymbol(xlength_d, &xlength, sizeof(int), 0, cudaMemcpyHostToDevice));
-	cudaErrorCheck(cudaMemcpyToSymbol(num_cells_d, &num_cells, sizeof(int), 0, cudaMemcpyHostToDevice));
-	cudaErrorCheck(cudaMemcpyToSymbol(tau_d, &tau, sizeof(float), 0, cudaMemcpyHostToDevice));
-	cudaErrorCheck(cudaMemcpyToSymbol(wall_velocity_d, wall_velocity, D_LBM*sizeof(float), 0, cudaMemcpyHostToDevice));
+	cudaErrorCheck(cudaMemcpyToSymbol(const char* xlength_d, &xlength, sizeof(int), 0, cudaMemcpyHostToDevice));
+	cudaErrorCheck(cudaMemcpyToSymbol(const char* num_cells_d, &num_cells, sizeof(int), 0, cudaMemcpyHostToDevice));
+	cudaErrorCheck(cudaMemcpyToSymbol(const char* tau_d, &tau, sizeof(float), 0, cudaMemcpyHostToDevice));
+	cudaErrorCheck(cudaMemcpyToSymbol(const char* wall_velocity_d, wall_velocity, D_LBM*sizeof(float), 0, cudaMemcpyHostToDevice));
 
-	cudaErrorCheck(cudaMemcpyToSymbol(collide_field_d, collide_field_dd, sizeof(*collide_field_dd), 0, cudaMemcpyHostToDevice));
-	cudaErrorCheck(cudaMemcpyToSymbol(stream_field_d, stream_field_dd, sizeof(*stream_field_dd), 0, cudaMemcpyHostToDevice));
+	cudaErrorCheck(cudaMemcpyToSymbol(const char* collide_field_d, collide_field_dd, sizeof(*collide_field_dd), 0, cudaMemcpyHostToDevice));
+	cudaErrorCheck(cudaMemcpyToSymbol(const char* stream_field_d, stream_field_dd, sizeof(*stream_field_dd), 0, cudaMemcpyHostToDevice));
 
 	/* define grid structure */
 	dim3 block(BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
@@ -394,6 +394,6 @@ void DoIteration(float *collide_field, float *stream_field, int *flag_field, flo
 		printf("MLUPS: %f\n", num_cells/(MLUPS_EXPONENT*(float)mlups_time/CLOCKS_PER_SEC));
 
 	/* copy data back to host */
-	cudaErrorCheck(cudaMemcpyFromSymbol(collide_field_dd, collide_field_d, sizeof(*collide_field_dd), 0, cudaMemcpyDeviceToHost));
-	cudaErrorCheck(cudaMemcpyFromSymbol(stream_field_dd, stream_field_d, sizeof(*stream_field_dd), 0, cudaMemcpyDeviceToHost));
+	cudaErrorCheck(cudaMemcpyFromSymbol(const char* collide_field_dd, collide_field_d, sizeof(*collide_field_dd), 0, cudaMemcpyDeviceToHost));
+	cudaErrorCheck(cudaMemcpyFromSymbol(const char* stream_field_dd, stream_field_d, sizeof(*stream_field_dd), 0, cudaMemcpyDeviceToHost));
 }
