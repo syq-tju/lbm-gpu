@@ -395,6 +395,6 @@ void DoIteration(float *collide_field, float *stream_field, int *flag_field, flo
 		printf("MLUPS: %f\n", num_cells/(MLUPS_EXPONENT*(float)mlups_time/CLOCKS_PER_SEC));
 
 	/* copy data back to host */
-	cudaErrorCheck(cudaMemcpyFromSymbol(const char* collide_field_dd, collide_field_d, sizeof(*collide_field_dd), 0, cudaMemcpyDeviceToHost));
-	cudaErrorCheck(cudaMemcpyFromSymbol(const char* stream_field_dd, stream_field_d, sizeof(*stream_field_dd), 0, cudaMemcpyDeviceToHost));
+	cudaErrorCheck(cudaMemcpyFromSymbol(const void* collide_field_dd, collide_field_d, sizeof(*collide_field_dd), 0, cudaMemcpyDeviceToHost));
+	cudaErrorCheck(cudaMemcpyFromSymbol(const void* stream_field_dd, stream_field_d, sizeof(*stream_field_dd), 0, cudaMemcpyDeviceToHost));
 }
