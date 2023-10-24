@@ -19,8 +19,8 @@ CC_CU=nvcc
 CFLAGS=-g -Wall -ofast -funroll-loops #-Werror -pedantic
 CFLAGS_CU=-g --ptxas-options=-v -arch=sm_$(COMPUTE_CAPABILITY)
 # Linker flags
-LDFLAGS=-lm
-## LDFLAGS_CU=-lcudart #-lcuda
+## LDFLAGS=-lm
+LDFLAGS_CU=-lcudart #-lcuda
 LDFLAGS = -lm -L/usr/local/cuda-11.8/targets/x86_64-linux/lib/ -Wl,-rpath,/usr/local/cuda-11.8/targets/x86_64-linux/lib/
 NVCCFLAGS = -g --ptxas-options=-v -arch=sm_75
 NVCCLDFLAGS = -lcudart
